@@ -9,3 +9,7 @@ const svelteLifecycles = singleSpaSvelte({
 export const bootstrap = svelteLifecycles.bootstrap;
 export const mount = svelteLifecycles.mount;
 export const unmount = svelteLifecycles.unmount;
+
+window.bootstrap = bootstrap
+window.mount = mount
+window.unmount = unmount
