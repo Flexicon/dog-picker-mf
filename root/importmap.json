@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.4.0/lib/system/single-spa.min.js",
+    "dog-nav": "/nav/app.js",
+    "dog-rating": "/rating/app.js",
+    "dog-history": "/history/js/app.js"
+  }
+}
