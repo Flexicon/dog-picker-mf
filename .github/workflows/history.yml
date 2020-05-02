@@ -1,4 +1,4 @@
-name: CI - Nav
+name: CI - History
 
 on:
   push:
@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      workdir: nav
+      workdir: history
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,14 @@ jobs:
         working-directory: ${{env.workdir}}
 
       - name: List artifacts
-        run: ls -la ./public/build
+        run: ls -la ./dist
         working-directory: ${{env.workdir}}
+
+      - name: Prepare artifacts
+        working-directory: ${{env.workdir}}
+        run: |
+          mv dist/js/* dist/
+          rm -rf dist/index.html dist/favicon.ico
 
       - uses: jakejarvis/s3-sync-action@master
         with:
@@ -33,5 +39,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'eu-central-1'
-          SOURCE_DIR: 'nav/public/build'
-          DEST_DIR: 'nav'
+          SOURCE_DIR: 'history/dist'
+          DEST_DIR: 'history'
