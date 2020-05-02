@@ -9,6 +9,16 @@
 
     return isActive ? { class: "active" } : {};
   }
+
+  function setupGHButtons() {
+    const script = document.createElement("script");
+    script.setAttribute("type", "text/javascript");
+    script.setAttribute("src", "https://buttons.github.io/buttons.js");
+
+    document.head.appendChild(script);
+  }
+
+  setupGHButtons();
 </script>
 
 <style>
@@ -20,6 +30,7 @@
   .dog-nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     color: whitesmoke;
     padding: 0 20px;
@@ -49,10 +60,19 @@
     text-transform: uppercase;
   }
 
+  .gh-link {
+    padding-top: 5px;
+  }
+
+  :global(.brand a) {
+    color: whitesmoke;
+    text-decoration: none;
+  }
+
   :global(nav a) {
     color: whitesmoke;
     text-decoration: none;
-	padding: 0 10px;
+    padding: 0 10px;
   }
 
   :global(nav a:hover) {
@@ -69,23 +89,31 @@
   }
 </style>
 
-<div class="wrapper">
-  <div class="dog-nav">
-    <div class="left">
-      <strong class="brand">{title}</strong>
-    </div>
+<Router>
+  <div class="wrapper">
+    <div class="dog-nav">
+      <div class="left">
+        <strong class="brand">
+          <Link to="/">{title}</Link>
+        </strong>
+      </div>
 
-    <div class="center">
-      <Router>
+      <div class="center">
         <nav>
-          <Link to="/" getProps={getLinkProps}>Home</Link>
-          <Link to="/rating" getProps={getLinkProps}>Rating</Link>
+          <Link to="/" getProps={getLinkProps}>History</Link>
+          <Link to="/rating" getProps={getLinkProps}>Rate a Dog</Link>
         </nav>
-      </Router>
-    </div>
+      </div>
 
-    <div class="right">
-      <!-- Add github icon and link here -->
+      <div class="right gh-link">
+        <a
+          class="github-button"
+          href="https://github.com/flexicon/dog-picker-mf"
+          data-show-count="true"
+          aria-label="Star flexicon/dog-picker-mf on GitHub">
+          Star
+        </a>
+      </div>
     </div>
   </div>
-</div>
+</Router>

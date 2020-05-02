@@ -27,6 +27,8 @@
 
   <body>
     <script>
+      window.isStandalone = true;
+
       const mountInterval = setInterval(() => {
         if (window.bootstrap && window.mount) {
           window.bootstrap();
