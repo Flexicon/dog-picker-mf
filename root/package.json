@@ -4,7 +4,7 @@
     "lint": "eslint src --ext js",
     "test": "jest",
     "format": "prettier --write './**'",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production && cp _redirects ./dist/"
   },
   "husky": {
     "hooks": {
