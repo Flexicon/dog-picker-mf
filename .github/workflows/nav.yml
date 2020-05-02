@@ -1,0 +1,22 @@
+name: CI - Nav
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      workdir: nav
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build app
+        run: npm run build
+        working-directory: ${{env.workdir}}
+
+      - name: List artifacts
+        run: ls -la ./public/build
+        working-directory: ${{env.workdir}}
