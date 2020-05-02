@@ -6,4 +6,5 @@ module.exports = {
       'Access-Control-Allow-Methods': 'GET, OPTIONS',
     },
   },
+  filenameHashing: false,
 }
